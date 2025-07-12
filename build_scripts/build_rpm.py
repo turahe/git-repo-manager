@@ -63,13 +63,13 @@ def create_rpm_spec():
     spec_content = """%global __python %{__python3}
 %global python_abi %(python3 -c "import sys; print('python%d.%d' % sys.version_info[:2])")
 
-Name:           gitlab-repo-manager
+Name:           git-repo-manager
 Version:        1.0.0
 Release:        1%{?dist}
 Summary:        GitLab Repository Management Tool
 
 License:        MIT
-URL:            https://github.com/yourusername/gitlab-repo-manager
+URL:            https://github.com/turahe/git-repo-manager
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildArch:      noarch
@@ -104,14 +104,14 @@ Features include:
 %doc README.md config.example.yml
 %{python3_sitelib}/src/
 %{python3_sitelib}/gitlab_repo_manager-*.egg-info/
-%{_bindir}/gitlab-repo-manager
+%{_bindir}/git-repo-manager
 
 %changelog
-* Wed Jan 01 2024 Your Name <your.email@example.com> - 1.0.0-1
+* Wed Jan 01 2025 Nur Wachid <wachid@outlook.com> - 1.0.0-1
 - Initial release
 """
     
-    with open("gitlab-repo-manager.spec", "w") as f:
+    with open("git-repo-manager.spec", "w") as f:
         f.write(spec_content)
 
 

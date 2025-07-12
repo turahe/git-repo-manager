@@ -46,7 +46,7 @@ def build_deb():
     subprocess.run(["py2dsc", str(latest_dist)], check=True)
     
     # Build DEB package
-    debian_dir = Path("deb_dist/gitlab-repo-manager-1.0.0/debian")
+    debian_dir = Path("deb_dist/git-repo-manager-1.0.0/debian")
     if debian_dir.exists():
         subprocess.run(["dpkg-buildpackage", "-rfakeroot", "-uc", "-us"], 
                       cwd=debian_dir.parent, check=True)
@@ -61,13 +61,13 @@ def build_deb():
 
 def create_debian_control():
     """Create debian control file"""
-    control_content = """Source: gitlab-repo-manager
+    control_content = """Source: git-repo-manager
 Section: utils
 Priority: optional
-Maintainer: Your Name <your.email@example.com>
+Maintainer: Nur Wachid <wachid@outlook.com>
 Build-Depends: debhelper (>= 9), dh-python, python3-all, python3-setuptools
 
-Package: gitlab-repo-manager
+Package: git-repo-manager
 Architecture: all
 Depends: ${python3:Depends}, ${misc:Depends}
 Description: GitLab Repository Management Tool

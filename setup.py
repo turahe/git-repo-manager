@@ -7,14 +7,14 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
     requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
 
 setup(
-    name="gitlab-repo-manager",
+    name="git-repo-manager",
     version="1.0.0",
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="Nur Wachid",
+    author_email="wachid@outlook.com",
     description="A modular CLI tool for managing GitLab repositories and Composer dependencies",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/gitlab-repo-manager",
+    url="https://github.com/turahe/git-repo-manager",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -32,12 +32,12 @@ setup(
     install_requires=requirements,
     entry_points={
         "console_scripts": [
-            "gitlab-repo-manager=cli:cli",
+            "git-repo-manager=cli:cli",
         ],
     },
     keywords="gitlab, repository, composer, cli, management",
     project_urls={
-        "Bug Reports": "https://github.com/yourusername/gitlab-repo-manager/issues",
-        "Source": "https://github.com/yourusername/gitlab-repo-manager",
+        "Bug Reports": "https://github.com/turahe/git-repo-manager/issues",
+        "Source": "https://github.com/turahe/git-repo-manager",
     },
 ) 
