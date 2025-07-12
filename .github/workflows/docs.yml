@@ -1,0 +1,70 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pydoc-markdown
+    
+    - name: Generate documentation
+      run: |
+        # Generate API documentation
+        pydoc-markdown --render-toc --render-toc-title "Table of Contents" src/ > docs/api.md
+        
+        # Create documentation index
+        cat > docs/index.md << 'EOF'
+        # GitLab Repository Manager Documentation
+        
+        ## Overview
+        
+        GitLab Repository Manager is a modular CLI tool for managing GitLab repositories and Composer dependencies.
+        
+        ## Quick Start
+        
+        1. [Installation](installation.md)
+        2. [Configuration](configuration.md)
+        3. [Usage](usage.md)
+        4. [API Reference](api.md)
+        
+        ## Features
+        
+        - Clone user and group repositories
+        - Concurrent repository operations
+        - Composer dependency management
+        - YAML configuration support
+        - Environment variable override
+        EOF
+    
+    - name: Check documentation links
+      run: |
+        # Check for broken links in README
+        grep -o '\[.*\](.*)' README.md | sed 's/\[.*\](\(.*\))/\1/' | while read link; do
+          if [[ $link == http* ]]; then
+            curl -s -o /dev/null -w "%{http_code}" "$link" | grep -q "200\|301\|302" || echo "Broken link: $link"
+          fi
+        done
+    
+    - name: Upload documentation artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: documentation
+        path: docs/
+        retention-days: 30 
