@@ -31,6 +31,8 @@ pip install -r requirements.txt
 
 ## Usage
 
+![git-repo-manager](docs/cli.svg)
+
 ### Basic Commands
 
 ```bash

@@ -2,6 +2,8 @@
 
 This guide covers how to use Git Repository Manager for various repository management tasks.
 
+![git-repo-manager](docs/cli.svg)
+
 ## Quick Start
 
 ### 1. Initialize Configuration
