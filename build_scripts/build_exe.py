@@ -24,7 +24,21 @@ def build_exe():
     build_dir = Path("dist/windows")
     build_dir.mkdir(parents=True, exist_ok=True)
     
-    # PyInstaller command
+    # Get absolute paths for data files
+    current_dir = Path.cwd()
+    config_example = current_dir / "config.example.yml"
+    readme = current_dir / "README.md"
+    
+    # Verify files exist
+    if not config_example.exists():
+        print(f"ERROR: config.example.yml not found at {config_example}")
+        sys.exit(1)
+    
+    if not readme.exists():
+        print(f"ERROR: README.md not found at {readme}")
+        sys.exit(1)
+    
+    # PyInstaller command with absolute paths
     cmd = [
         "pyinstaller",
         "--onefile",
@@ -32,8 +46,8 @@ def build_exe():
         "--distpath=dist/windows",
         "--workpath=build/windows",
         "--specpath=build/windows",
-        "--add-data=config.example.yml;.",
-        "--add-data=README.md;.",
+        f"--add-data={config_example};.",
+        f"--add-data={readme};.",
         "--hidden-import=click",
         "--hidden-import=yaml",
         "--hidden-import=requests",
@@ -42,10 +56,10 @@ def build_exe():
     
     try:
         subprocess.run(cmd, check=True)
-        print("✅ Windows EXE built successfully!")
-        print(f"📦 Executable location: {build_dir / 'git-repo-manager.exe'}")
+        print("SUCCESS: Windows EXE built successfully!")
+        print(f"PACKAGE: Executable location: {build_dir / 'git-repo-manager.exe'}")
     except subprocess.CalledProcessError as e:
-        print(f"❌ Error building Windows EXE: {e}")
+        print(f"ERROR: Error building Windows EXE: {e}")
         sys.exit(1)
 
 
@@ -80,7 +94,7 @@ git-repo-manager.exe %*
     with open(package_dir / "run.bat", "w") as f:
         f.write(batch_content)
     
-    print("✅ Windows package created!")
+    print("SUCCESS: Windows package created!")
 
 
 if __name__ == "__main__":

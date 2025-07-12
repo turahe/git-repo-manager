@@ -2,10 +2,10 @@ name: Build Packages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ build ]
     tags: [ 'v*' ]
   pull_request:
-    branches: [ main ]
+    branches: [ build ]
 
 jobs:
   build-windows:
@@ -43,7 +43,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Set up Python
+    - name: Set up Python 3.10
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
@@ -70,7 +70,7 @@ jobs:
         retention-days: 30
 
   build-rpm:
-    runs-on: ubuntu-latest
+    runs-on: centos-latest
     if: github.event_name == 'push' || github.event_name == 'release'
     
     steps:
