@@ -72,16 +72,16 @@ python build_scripts/build_all.py
 ### Windows
 - **Location**: `dist/windows/`
 - **Files**: 
-  - `gitlab-repo-manager.exe` - Main executable
+  - `git-repo-manager.exe` - Main executable
   - `package/` - Complete package with dependencies
 
 ### DEB Package
 - **Location**: `dist/debian/`
-- **Files**: `gitlab-repo-manager_*.deb`
+- **Files**: `git-repo-manager_*.deb`
 
 ### RPM Package
 - **Location**: `dist/rpm/`
-- **Files**: `gitlab-repo-manager-*.rpm`
+- **Files**: `git-repo-manager-*.rpm`
 
 ## Platform-Specific Instructions
 
@@ -100,7 +100,7 @@ sudo apt-get install python3-stdeb dh-python
 python build_scripts/build_deb.py
 
 # Install package
-sudo dpkg -i dist/debian/gitlab-repo-manager_*.deb
+sudo dpkg -i dist/debian/git-repo-manager_*.deb
 ```
 
 ### CentOS/RHEL/Fedora
@@ -112,7 +112,7 @@ sudo yum install rpm-build python3-setuptools
 python build_scripts/build_rpm.py
 
 # Install package
-sudo rpm -i dist/rpm/gitlab-repo-manager-*.rpm
+sudo rpm -i dist/rpm/git-repo-manager-*.rpm
 ```
 
 ## Troubleshooting
@@ -168,7 +168,7 @@ cd /app && python3 build_scripts/build_rpm.py
 ## Package Contents
 
 ### Windows EXE Package
-- `gitlab-repo-manager.exe` - Main executable
+- `git-repo-manager.exe` - Main executable
 - `config.example.yml` - Example configuration
 - `README.md` - Documentation
 - `run.bat` - Convenience script

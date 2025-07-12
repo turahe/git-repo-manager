@@ -111,10 +111,10 @@ def init_config(force, non_interactive):
                 click.echo("\n📋 Next steps:")
                 click.echo("1. Edit the config file with your GitLab token")
                 click.echo("2. Update group IDs as needed")
-                click.echo("3. Run 'gitlab-repo-manager clone-groups' to start cloning")
+                click.echo("3. Run 'git-repo-manager clone-groups' to start cloning")
             else:
                 click.echo("\n✅ Configuration completed successfully!")
-                click.echo("You can now run 'gitlab-repo-manager clone-groups' to start cloning")
+                click.echo("You can now run 'git-repo-manager clone-groups' to start cloning")
     except ValueError as e:
         click.echo(f"❌ {e}")
         return

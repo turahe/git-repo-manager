@@ -40,22 +40,34 @@ def build_rpm():
     # Build RPM
     dist_files = list(Path("dist").glob("*.tar.gz"))
     if not dist_files:
-        print("❌ No source distribution found!")
+        print("ERROR: No source distribution found!")
         sys.exit(1)
     
     latest_dist = max(dist_files, key=lambda x: x.stat().st_mtime)
+    print(f"Using source distribution: {latest_dist}")
     
     # Build RPM
-    subprocess.run(["rpmbuild", "-ta", str(latest_dist)], check=True)
+    try:
+        subprocess.run(["rpmbuild", "-ta", str(latest_dist)], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"ERROR: Failed to build RPM package: {e}")
+        sys.exit(1)
     
     # Move RPM to dist directory
     rpm_dir = Path.home() / "rpmbuild/RPMS/noarch"
     if rpm_dir.exists():
-        for rpm_file in rpm_dir.glob("*.rpm"):
-            shutil.move(str(rpm_file), str(build_dir))
-    
-    print("✅ RPM package built successfully!")
-    print(f"📦 Package location: {build_dir}")
+        rpm_files = list(rpm_dir.glob("*.rpm"))
+        if rpm_files:
+            for rpm_file in rpm_files:
+                shutil.move(str(rpm_file), str(build_dir))
+            print("SUCCESS: RPM package built successfully!")
+            print(f"PACKAGE: Package location: {build_dir}")
+        else:
+            print("ERROR: No RPM files were created!")
+            sys.exit(1)
+    else:
+        print(f"ERROR: RPM build directory not found at {rpm_dir}")
+        sys.exit(1)
 
 
 def create_rpm_spec():

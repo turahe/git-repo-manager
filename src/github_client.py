@@ -12,7 +12,7 @@ class GitHubClient:
         self.headers = {
             "Authorization": f"token {config.access_token}",
             "Accept": "application/vnd.github.v3+json",
-            "User-Agent": "GitLab-Repo-Manager/1.0"
+            "User-Agent": "git-repo-manager/1.0"
         }
     
     def get_current_user(self) -> Dict[str, Any]:

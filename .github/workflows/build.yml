@@ -2,10 +2,10 @@ name: Build Packages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ build ]
     tags: [ 'v*' ]
   pull_request:
-    branches: [ main ]
+    branches: [ build ]
 
 jobs:
   build-windows:
@@ -18,7 +18,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.10'
     
     - name: Install dependencies
       run: |
@@ -30,7 +30,7 @@ jobs:
         python build_scripts/build_exe.py
     
     - name: Upload Windows artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows-package
         path: dist/windows/
@@ -43,10 +43,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Set up Python
+    - name: Set up Python 3.10
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.10'
     
     - name: Install build dependencies
       run: |
@@ -63,14 +63,14 @@ jobs:
         python build_scripts/build_deb.py
     
     - name: Upload DEB artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: debian-package
         path: dist/debian/
         retention-days: 30
 
   build-rpm:
-    runs-on: ubuntu-latest
+    runs-on: centos-latest
     if: github.event_name == 'push' || github.event_name == 'release'
     
     steps:
@@ -79,7 +79,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.10'
     
     - name: Install build dependencies
       run: |
@@ -95,7 +95,7 @@ jobs:
         python build_scripts/build_rpm.py
     
     - name: Upload RPM artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: rpm-package
         path: dist/rpm/
@@ -111,7 +111,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.10'
     
     - name: Install dependencies
       run: |

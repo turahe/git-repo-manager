@@ -1,3 +1,9 @@
+[![Build Status](https://github.com/turahe/git-repo-manager/actions/workflows/test.yml/badge.svg)](https://github.com/turahe/git-repo-manager/actions/workflows/test.yml)
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://turahe.github.io/git-repo-manager/)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/github/license/turahe/git-repo-manager)](LICENSE)
+[![Coverage Status](https://img.shields.io/codecov/c/github/turahe/git-repo-manager?logo=codecov)](https://codecov.io/gh/turahe/git-repo-manager)
+
 # GitLab & GitHub Repository Management Tool
 
 A modular, object-oriented CLI tool for managing GitLab and GitHub repositories and Composer dependencies using Click.
