@@ -12,7 +12,7 @@ class ConfigManager:
         if config_file == "config.yml":
             # Look for config in current directory first, then user home
             current_config = Path("config.yml")
-            user_config = Path.home() / ".gitlab-repo-manager" / "config.yml"
+            user_config = Path.home() / ".git-repo-manager" / "config.yml"
             
             if current_config.exists():
                 self.config_file = str(current_config)

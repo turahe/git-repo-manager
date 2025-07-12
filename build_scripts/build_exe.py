@@ -28,7 +28,7 @@ def build_exe():
     cmd = [
         "pyinstaller",
         "--onefile",
-        "--name=gitlab-repo-manager",
+        "--name=git-repo-manager",
         "--distpath=dist/windows",
         "--workpath=build/windows",
         "--specpath=build/windows",
@@ -43,7 +43,7 @@ def build_exe():
     try:
         subprocess.run(cmd, check=True)
         print("✅ Windows EXE built successfully!")
-        print(f"📦 Executable location: {build_dir / 'gitlab-repo-manager.exe'}")
+        print(f"📦 Executable location: {build_dir / 'git-repo-manager.exe'}")
     except subprocess.CalledProcessError as e:
         print(f"❌ Error building Windows EXE: {e}")
         sys.exit(1)
@@ -57,7 +57,7 @@ def create_windows_package():
     package_dir.mkdir(parents=True, exist_ok=True)
     
     # Copy executable
-    exe_path = Path("dist/windows/gitlab-repo-manager.exe")
+    exe_path = Path("dist/windows/git-repo-manager.exe")
     if exe_path.exists():
         shutil.copy2(exe_path, package_dir)
     
@@ -75,7 +75,7 @@ def create_windows_package():
     batch_content = """@echo off
 echo GitLab Repository Manager
 echo ========================
-gitlab-repo-manager.exe %*
+git-repo-manager.exe %*
 """
     with open(package_dir / "run.bat", "w") as f:
         f.write(batch_content)

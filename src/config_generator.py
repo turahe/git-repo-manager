@@ -9,7 +9,7 @@ class ConfigGenerator:
     
     def __init__(self):
         self.home_dir = Path.home()
-        self.config_path = self.home_dir / ".gitlab-repo-manager" / "config.yml"
+        self.config_path = self.home_dir / ".git-repo-manager" / "config.yml"
     
     def generate_config(self, force: bool = False, interactive: bool = True) -> bool:
         """
@@ -284,7 +284,7 @@ class ConfigGenerator:
         else:
             print(f"📁 Config file location: {self.config_path}")
             print(f"📄 Config file exists: No")
-            print("💡 Run 'gitlab-repo-manager init-config' to create config file")
+            print("💡 Run 'git-repo-manager init-config' to create config file")
     
     def validate_config(self) -> bool:
         """Validate the existing config file"""
