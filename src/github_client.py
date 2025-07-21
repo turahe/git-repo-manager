@@ -25,7 +25,7 @@ class GitHubClient:
             return response.json()
         except requests.exceptions.HTTPError as e:
             if response.status_code == 401:
-                print(f"Error: Authentication failed when getting user info. Check your GitHub Token. {e}")
+                print(f"Error: Authentication failed when getting user info. Check your GitHub Token. {e}\n\nTo create or check your GitHub Personal Access Token, visit: https://github.com/settings/tokens")
             else:
                 print(f"HTTP Error fetching user info: {e}")
             sys.exit(1)
@@ -67,11 +67,11 @@ class GitHubClient:
                     
             except requests.exceptions.HTTPError as e:
                 if response.status_code == 401:
-                    print(f"Error: Authentication failed. Check your GitHub Token. {e}")
+                    print(f"Error: Authentication failed. Check your GitHub Token. {e}\n\nTo create or check your GitHub Personal Access Token, visit: https://github.com/settings/tokens")
                 elif response.status_code == 403:
                     print(f"Error: API rate limit exceeded or forbidden. {e}")
                 elif response.status_code == 404:
-                    print(f"Error: User '{username}' not found. {e}")
+                    print(f"Error: User '{username}' not found or you do not have access. {e}\n\nIf this is a private user or you expect access, check your GitHub Personal Access Token permissions: https://github.com/settings/tokens")
                 else:
                     print(f"HTTP Error fetching repositories: {e}")
                 break
@@ -116,11 +116,11 @@ class GitHubClient:
                     
             except requests.exceptions.HTTPError as e:
                 if response.status_code == 401:
-                    print(f"Error: Authentication failed. Check your GitHub Token. {e}")
+                    print(f"Error: Authentication failed. Check your GitHub Token. {e}\n\nTo create or check your GitHub Personal Access Token, visit: https://github.com/settings/tokens")
                 elif response.status_code == 403:
                     print(f"Error: API rate limit exceeded or forbidden. {e}")
                 elif response.status_code == 404:
-                    print(f"Error: Organization '{org_name}' not found. {e}")
+                    print(f"Error: Organization '{org_name}' not found or you do not have access. {e}\n\nIf this is a private organization or you expect access, check your GitHub Personal Access Token permissions: https://github.com/settings/tokens")
                 else:
                     print(f"HTTP Error fetching repositories: {e}")
                 break
@@ -165,7 +165,7 @@ class GitHubClient:
                     
             except requests.exceptions.HTTPError as e:
                 if response.status_code == 401:
-                    print(f"Error: Authentication failed. Check your GitHub Token. {e}")
+                    print(f"Error: Authentication failed. Check your GitHub Token. {e}\n\nTo create or check your GitHub Personal Access Token, visit: https://github.com/settings/tokens")
                 elif response.status_code == 403:
                     print(f"Error: API rate limit exceeded or forbidden. {e}")
                 else:
